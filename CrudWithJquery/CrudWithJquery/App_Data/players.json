@@ -1,0 +1,20 @@
+﻿[
+    {
+        "PlayerId": "09d6d7de-af11-49a5-9440-1dd7fc6ea542",
+        "Name": "Daniel",
+        "Surname": "Sancho",
+        "Position": "Ala",
+        "StrongLeg": "Right",
+        "Age": 20,
+        "PlayerNumber": 8
+    },
+    {
+        "PlayerId": "ccf314d3-105e-4ffb-a642-4f418e7f2acd",
+        "Name": "Unai",
+        "Surname": "Rodriguez",
+        "Position": "Pivot",
+        "StrongLeg": "Right",
+        "Age": 20,
+        "PlayerNumber": 16
+    }
+]
