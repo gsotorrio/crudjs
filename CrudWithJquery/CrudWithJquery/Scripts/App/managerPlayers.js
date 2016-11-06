@@ -5,7 +5,7 @@
         console.log(data);
 
         $.each(data, function (index, player) {
-            $('#tbPlayers tr:last').after('<tr><td>' + player.PlayerId + '</td><td>' + player.Name + '</td><td>' + player.Surname + '</td><td>' + player.Position + '</td><td>' + player.StrongLeg + '</td><td>' + player.Age + '</td><td>' + player.PlayerNumber + '</td></tr>');
+            $('#tbPlayers tr:last').after('<tr><td>' + player.playerId + '</td><td>' + player.name + '</td><td>' + player.surname + '</td><td>' + player.position + '</td><td>' + player.strongLeg + '</td><td>' + player.age + '</td><td>' + player.playerNumber + '</td></tr>');
         });       
     });
 });
