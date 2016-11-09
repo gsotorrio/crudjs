@@ -29,3 +29,7 @@ th {
 td{
     border: solid 1px black;
 }
+
+.hideId {
+    display: none;
+}
