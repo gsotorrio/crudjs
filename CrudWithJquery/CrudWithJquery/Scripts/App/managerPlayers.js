@@ -1,6 +1,6 @@
 ﻿function putNewPlayerInTable(player) {
     $("#tbPlayers tr:last").after(
-        "<tr id='" + player.playerId + "'><td class='hideId'>"
+        "<tr id='tr-" + player.playerId + "'><td class='hideId'>"
         + player.playerId +
         "</td><td>"
         + player.name +
@@ -14,7 +14,7 @@
         + player.age +
         "</td><td>"
         + player.playerNumber +
-        "</td><td><a id='" + player.playerId + "' href='#' class='delete'>Delete</a></td><td><a href='#'>Update</a></td></tr>");
+        "</td><td><a id='delete-" + player.playerId + "' href='#' class='delete'>Delete</a></td><td><a href='#'>Update</a></td></tr>");
 }
 
 $(function () {
@@ -29,10 +29,10 @@ $(function () {
 
         $(".delete").click(function (event) {
             $.ajax({
-                url: "http://localhost:13503/api/players/" + event.target.id,  
+                url: "http://localhost:13503/api/players/" + event.target.id.substring(7),
                 method: "DELETE"
             }).done(function () {
-                $("#" + event.target.id).remove();  
+                $("#tr-" + event.target.id).remove();  
             });
         });
     });
@@ -67,3 +67,7 @@ $("#save").click(function () {
 });
 
 
+// AL elemento td update anaidirle evento click de jquery
+// cuando el usuario hace cilck mostramos la informacion de la fila en el formulario
+// aniadir otroboton para hacer el put 
+// cuando tenga la respuesta del servidor borro la fila y la vuelvo a crear con el player que viene del servidor
