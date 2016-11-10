@@ -74,8 +74,17 @@ $("#save").click(function () {
     });
 });
 
+// Añadir una clase ´update´ al elemento <a>Update</a>
 
-// AL elemento td update anaidirle evento click de jquery
-// cuando el usuario hace cilck mostramos la informacion de la fila en el formulario
-// aniadir otroboton para hacer el put 
-// cuando tenga la respuesta del servidor borro la fila y la vuelvo a crear con el player que viene del servidor
+// Crear una funcion linkEventClickUpdate que contendra el evento click UPDATE. 
+// Esta funcion hay que llamarla desde documento.ready y desde crear un player. Exactamente igual que linkEventClickDelete
+
+// Cuando el usuario hace click en Update mostramos la informacion de la fila en el formulario.
+
+// Añadir otro boton en el formulario para hacer el update.
+// Cuando el usuario hace click en este boton hacemos la petición PUT al servidor
+
+// Cuando el servidor response, borramos la fila y la creamos otra vez con los datos del player que viene desde el servidor.
+// Importante, tendremos que llamar a las funciones de enlazar los eventos DELETE y UPDATE otra vez porque hemos creado una fila dinamicamente.
+
+// Borrar la informacion del formulario
