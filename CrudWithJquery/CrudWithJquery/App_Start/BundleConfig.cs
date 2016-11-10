@@ -12,7 +12,7 @@ namespace CrudWithJquery
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/App/managerPlayers.js"));
+                        "~/Scripts/App/crud-jQuery.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

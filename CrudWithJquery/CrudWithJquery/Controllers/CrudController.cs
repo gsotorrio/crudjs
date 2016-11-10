@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace CrudWithJquery.Controllers
 {
-    public class PlayersController : Controller
+    public class CrudController : Controller
     {
         // GET: Players
-        public ActionResult List()
+        public ActionResult Jquery()
         {
             return View();
         }
