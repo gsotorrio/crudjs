@@ -1,6 +1,6 @@
 ﻿function putNewPlayerInTable(player) {
     $("#tbPlayers tr:last").after(
-        "<tr id='tr-" + player.playerId + "'><td class='hideId'>"
+        "<tr id='" + player.playerId + "'><td class='hideId'>"
         + player.playerId +
         "</td><td>"
         + player.name +
@@ -14,7 +14,21 @@
         + player.age +
         "</td><td>"
         + player.playerNumber +
-        "</td><td><a id='delete-" + player.playerId + "' href='#' class='delete'>Delete</a></td><td><a href='#'>Update</a></td></tr>");
+        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#'>Update</a></td></tr>");
+}
+
+function linkEventClickDelete() {
+    $(".delete").click(function (event) {
+
+        var trPlayer = event.target.parentElement.parentElement;
+
+        $.ajax({
+            url: "http://localhost:13503/api/players/" + trPlayer.id,
+            method: "DELETE"
+        }).done(function () {
+            $("#" + trPlayer.id).remove();
+        });
+    });
 }
 
 $(function () {
@@ -27,14 +41,7 @@ $(function () {
             putNewPlayerInTable(player);
         });
 
-        $(".delete").click(function (event) {
-            $.ajax({
-                url: "http://localhost:13503/api/players/" + event.target.id.substring(7),
-                method: "DELETE"
-            }).done(function () {
-                $("#tr-" + event.target.id).remove();  
-            });
-        });
+        linkEventClickDelete();
     });
 });
 
@@ -56,6 +63,7 @@ $("#save").click(function () {
         playerNumber: number
     }).done(function (player) {
         putNewPlayerInTable(player);
+        linkEventClickDelete();
 
         $("#name").val("");
         $("#surname").val("");
