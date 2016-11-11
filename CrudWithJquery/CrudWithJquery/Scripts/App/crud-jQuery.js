@@ -14,7 +14,7 @@
         + player.age +
         "</td><td>"
         + player.playerNumber +
-        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#' calss='update'>Update</a></td></tr>");
+        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#' class='update'>Update</a></td></tr>");
 }
 
 function linkEventClickDelete() {
@@ -31,13 +31,22 @@ function linkEventClickDelete() {
     });
 }
 
-function getDatesAboutOnePlayer() {
+function linkEventClickUpdate() {
     $(".update").click(function (event) {
+
         var trPlayer = event.target.parentElement.parentElement;
 
         $.get("http://localhost:13503/api/players/" + trPlayer.id, function (player) {
             console.log(player);
+
+            $("#name").val(player.name);
+            $('#surname').val(player.surname);
+            $('#position').val(player.position);
+            $('#strongLeg').val(player.strongLeg);
+            $('#age').val(player.age);
+            $('#number').val(player.playerNumber)       
         });
+        
     });
 }
 
@@ -52,7 +61,7 @@ $(function () {
         });
 
         linkEventClickDelete();
-        getDatesAboutOnePlayer();
+        linkEventClickUpdate();
     });
 });
 
@@ -75,7 +84,7 @@ $("#create").click(function () {
     }).done(function (player) {
         putNewPlayerInTable(player);
         linkEventClickDelete();
-        getDatesAboutOnePlayer();
+        linkEventClickUpdate();
 
         $("#name").val("");
         $("#surname").val("");
