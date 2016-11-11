@@ -14,7 +14,7 @@
         + player.age +
         "</td><td>"
         + player.playerNumber +
-        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#'>Update</a></td></tr>");
+        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#' calss='update'>Update</a></td></tr>");
 }
 
 function linkEventClickDelete() {
@@ -31,6 +31,16 @@ function linkEventClickDelete() {
     });
 }
 
+function getDatesAboutOnePlayer() {
+    $(".update").click(function (event) {
+        var trPlayer = event.target.parentElement.parentElement;
+
+        $.get("http://localhost:13503/api/players/" + trPlayer.id, function (player) {
+            console.log(player);
+        });
+    });
+}
+
 $(function () {
     console.log("ready!");
 
@@ -42,10 +52,11 @@ $(function () {
         });
 
         linkEventClickDelete();
+        getDatesAboutOnePlayer();
     });
 });
 
-$("#save").click(function () {
+$("#create").click(function () {
 
     var name = $("#name").val();
     var surname = $("#surname").val();
@@ -64,6 +75,7 @@ $("#save").click(function () {
     }).done(function (player) {
         putNewPlayerInTable(player);
         linkEventClickDelete();
+        getDatesAboutOnePlayer();
 
         $("#name").val("");
         $("#surname").val("");
@@ -74,7 +86,7 @@ $("#save").click(function () {
     });
 });
 
-// Añadir una clase ´update´ al elemento <a>Update</a>
+// Añadir una clase ´update´ al elemento <a>Update</a>         ok
 
 // Crear una funcion linkEventClickUpdate que contendra el evento click UPDATE. 
 // Esta funcion hay que llamarla desde documento.ready y desde crear un player. Exactamente igual que linkEventClickDelete
