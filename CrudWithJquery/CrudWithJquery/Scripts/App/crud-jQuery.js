@@ -45,8 +45,7 @@ function linkEventClickUpdate() {
             $('#strongLeg').val(player.strongLeg);
             $('#age').val(player.age);
             $('#number').val(player.playerNumber)       
-        });
-        
+        });    
     });
 }
 
@@ -95,14 +94,25 @@ $("#create").click(function () {
     });
 });
 
+$("#update").click(function (event) {
+    var trPlayer = event.target.parentElement.parentElement;
+
+    $.ajax({
+        url: "http://localhost:13503/api/players/" + trPlayer.id,
+        method: "PUT"
+    }).done(function () {
+        $("#" + trPlayer.id).replace();
+    });
+});
+
 // Añadir una clase ´update´ al elemento <a>Update</a>         ok
 
-// Crear una funcion linkEventClickUpdate que contendra el evento click UPDATE. 
-// Esta funcion hay que llamarla desde documento.ready y desde crear un player. Exactamente igual que linkEventClickDelete
+// Crear una funcion linkEventClickUpdate que contendra el evento click UPDATE.                 ok 
+// Esta funcion hay que llamarla desde documento.ready y desde crear un player. Exactamente igual que linkEventClickDelete            ok
 
-// Cuando el usuario hace click en Update mostramos la informacion de la fila en el formulario.
+// Cuando el usuario hace click en Update mostramos la informacion de la fila en el formulario.                     ok
 
-// Añadir otro boton en el formulario para hacer el update.
+// Añadir otro boton en el formulario para hacer el update.                         ok
 // Cuando el usuario hace click en este boton hacemos la petición PUT al servidor
 
 // Cuando el servidor response, borramos la fila y la creamos otra vez con los datos del player que viene desde el servidor.
