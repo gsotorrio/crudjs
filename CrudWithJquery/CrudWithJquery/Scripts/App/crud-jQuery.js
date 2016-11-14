@@ -1,4 +1,6 @@
-﻿function putNewPlayerInTable(player) {
+﻿var idPlayer;
+
+function putNewPlayerInTable(player) {
     $("#tbPlayers tr:last").after(
         "<tr id='" + player.playerId + "'><td class='hideId'>"
         + player.playerId +
@@ -21,7 +23,7 @@ function linkEventClickDelete() {
     $(".delete").click(function (event) {
 
         var trPlayer = event.target.parentElement.parentElement;
-
+        
         $.ajax({
             url: "http://localhost:13503/api/players/" + trPlayer.id,
             method: "DELETE"
@@ -35,7 +37,8 @@ function linkEventClickUpdate() {
     $(".update").click(function (event) {
 
         var trPlayer = event.target.parentElement.parentElement;
-
+        idPlayer = trPlayer;
+        
         $.get("http://localhost:13503/api/players/" + trPlayer.id, function (player) {
             console.log(player);
 
@@ -66,21 +69,15 @@ $(function () {
 
 $("#create").click(function () {
 
-    var name = $("#name").val();
-    var surname = $("#surname").val();
-    var position = $("#position").val();
-    var strongLeg = $("#strongLeg").val();
-    var age = $("#age").val();
-    var number = $("#number").val();
-
     $.post("http://localhost:13503/api/players", {
-        name: name,
-        surname: surname,
-        position: position,
-        strongLeg: strongLeg,
-        age: age,
-        playerNumber: number
+        name: $("#name").val(),
+        surname: $("#surname").val(),
+        position: $("#position").val(),
+        strongLeg: $("#strongLeg").val(),
+        age: $("#age").val(),
+        playerNumber: $("#number").val()
     }).done(function (player) {
+
         putNewPlayerInTable(player);
         linkEventClickDelete();
         linkEventClickUpdate();
@@ -94,14 +91,21 @@ $("#create").click(function () {
     });
 });
 
-$("#update").click(function (event) {
-    var trPlayer = event.target.parentElement.parentElement;
-
+$("#update").click(function () {
+    var trPlayer = idPlayer;
+    
     $.ajax({
-        url: "http://localhost:13503/api/players/" + trPlayer.id,
-        method: "PUT"
-    }).done(function () {
-        $("#" + trPlayer.id).replace();
+        type: "PUT",
+        url: "http://localhost:13503/api/players/" + trPlayer,
+        contentType: "application/json",
+        data: {
+            name: $("#name").val(),
+            surname: $("#surname").val(),
+            position: $("#position").val(),
+            strongLeg: $("#strongLeg").val(),
+            age: $("#age").val(),
+            playerNumber: $("#number").val()
+        }
     });
 });
 
