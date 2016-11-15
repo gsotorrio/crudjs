@@ -1,4 +1,4 @@
-﻿var idPlayer;
+﻿var idPlayerAfterPressUpdateTable;
 
 function putNewPlayerInTable(player) {
     $("#tbPlayers tr:last").after(
@@ -37,7 +37,7 @@ function linkEventClickUpdate() {
     $(".update").click(function (event) {
 
         var trPlayer = event.target.parentElement.parentElement;
-        idPlayer = trPlayer;
+        idPlayerAfterPressUpdateTable = trPlayer.id;
         
         $.get("http://localhost:13503/api/players/" + trPlayer.id, function (player) {
             console.log(player);
@@ -92,11 +92,10 @@ $("#create").click(function () {
 });
 
 $("#update").click(function () {
-    var trPlayer = idPlayer;
     
     $.ajax({
         type: "PUT",
-        url: "http://localhost:13503/api/players/" + trPlayer,
+        url: "http://localhost:13503/api/players/" + idPlayerAfterPressUpdateTable,
         contentType: "application/json",
         data: {
             name: $("#name").val(),
