@@ -114,11 +114,7 @@ $("#update").click(function () {
     }).done(function (player) {
         console.log(player);
 
-        $("#" + idPlayerAfterPressUpdateTable).remove();
-        putNewPlayerInTable(player);
-
-        linkEventClickDelete();
-        linkEventClickUpdate();
+        $("#" + idPlayerAfterPressUpdateTable).val(player);
 
         textBoxDelete();
     });
