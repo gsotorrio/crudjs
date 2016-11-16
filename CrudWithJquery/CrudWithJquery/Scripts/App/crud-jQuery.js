@@ -112,9 +112,8 @@ $("#update").click(function () {
         contentType: "application/json",
         data: JSON.stringify(jsonPlayer)
     }).done(function (player) {
-        console.log(player);
 
-        $("#" + idPlayerAfterPressUpdateTable).val(player);
+        $("#" + player.playerId).val(player);
 
         textBoxDelete();
     });
