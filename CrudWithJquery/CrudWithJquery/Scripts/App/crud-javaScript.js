@@ -32,21 +32,3 @@
 }
 
 
-// How to use the custom ajax function
-var json = {
-    "playerId": "18743c1a-a71d-4fad-90a5-5c440738cc13",
-    "name": "sample string 2",
-    "surname": "sample string 3",
-    "position": "sample string 4",
-    "strongLeg": "sample string 5",
-    "age": 6,
-    "playerNumber": 7
-};
-
-ajax("POST", "http://localhost:13503/api/players", json, function (data) {
-    console.log(data);
-});
-
-ajax("GET", "http://localhost:13503/api/players", null, function(data) {
-    console.log(data);
-});
