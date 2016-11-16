@@ -92,19 +92,32 @@ $("#create").click(function () {
 });
 
 $("#update").click(function () {
-    
+    var jsonPlayer = {
+        name: $("#name").val(),
+        surname: $("#surname").val(),
+        position: $("#position").val(),
+        strongLeg: $("#strongLeg").val(),
+        age: $("#age").val(),
+        playerNumber: $("#number").val()
+    };
+
     $.ajax({
         type: "PUT",
         url: "http://localhost:13503/api/players/" + idPlayerAfterPressUpdateTable,
         contentType: "application/json",
-        data: {
-            name: $("#name").val(),
-            surname: $("#surname").val(),
-            position: $("#position").val(),
-            strongLeg: $("#strongLeg").val(),
-            age: $("#age").val(),
-            playerNumber: $("#number").val()
-        }
+        data: JSON.stringify(jsonPlayer)
+    }).done(function (player) {
+        console.log(player);
+
+        $.ajax({
+            url: "http://localhost:13503/api/players/" + idPlayerAfterPressUpdateTable,
+            method: "DELETE"
+        }).done(function () {
+
+            $("#" + idPlayerAfterPressUpdateTable).remove();
+        }).done(function () {
+            putNewPlayerInTable(jsonPlayer);
+        });
     });
 });
 
