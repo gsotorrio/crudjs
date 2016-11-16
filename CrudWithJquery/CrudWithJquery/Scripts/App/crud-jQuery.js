@@ -115,7 +115,7 @@ $("#update").click(function () {
         console.log(player);
 
         $("#" + idPlayerAfterPressUpdateTable).remove();
-        putNewPlayerInTable(jsonPlayer);
+        putNewPlayerInTable(player);
 
         linkEventClickDelete();
         linkEventClickUpdate();
