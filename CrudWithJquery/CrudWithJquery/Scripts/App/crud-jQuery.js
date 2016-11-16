@@ -52,6 +52,15 @@ function linkEventClickUpdate() {
     });
 }
 
+function textBoxDelete() {
+    $("#name").val("");
+    $("#surname").val("");
+    $("#position").val("");
+    $("#strongLeg").val("");
+    $("#age").val("");
+    $("#number").val("");
+}
+
 $(function () {
     console.log("ready!");
 
@@ -79,15 +88,11 @@ $("#create").click(function () {
     }).done(function (player) {
 
         putNewPlayerInTable(player);
+
         linkEventClickDelete();
         linkEventClickUpdate();
 
-        $("#name").val("");
-        $("#surname").val("");
-        $("#position").val("");
-        $("#strongLeg").val("");
-        $("#age").val("");
-        $("#number").val("");
+        textBoxDelete();
     });
 });
 
@@ -109,15 +114,13 @@ $("#update").click(function () {
     }).done(function (player) {
         console.log(player);
 
-        $.ajax({
-            url: "http://localhost:13503/api/players/" + idPlayerAfterPressUpdateTable,
-            method: "DELETE"
-        }).done(function () {
+        $("#" + idPlayerAfterPressUpdateTable).remove();
+        putNewPlayerInTable(jsonPlayer);
 
-            $("#" + idPlayerAfterPressUpdateTable).remove();
-        }).done(function () {
-            putNewPlayerInTable(jsonPlayer);
-        });
+        linkEventClickDelete();
+        linkEventClickUpdate();
+
+        textBoxDelete();
     });
 });
 
