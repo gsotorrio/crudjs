@@ -33,3 +33,7 @@ td{
 .hideId {
     display: none;
 }
+
+.button {
+    margin-right: 50px;
+}
