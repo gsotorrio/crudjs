@@ -113,23 +113,17 @@ $("#update").click(function () {
         data: JSON.stringify(jsonPlayer)
     }).done(function (player) {
 
-        $("#" + player.playerId).val(player);
+        $("#" + player.playerId).find("td").eq(1).html(player.name);
+        $("#" + player.playerId).find("td").eq(2).html(player.surname);
+        $("#" + player.playerId).find("td").eq(3).html(player.position);
+        $("#" + player.playerId).find("td").eq(4).html(player.strongLeg);
+        $("#" + player.playerId).find("td").eq(5).html(player.age);
+        $("#" + player.playerId).find("td").eq(6).html(player.playerNumber);
 
         textBoxDelete();
     });
 });
 
-// Añadir una clase ´update´ al elemento <a>Update</a>         ok
-
-// Crear una funcion linkEventClickUpdate que contendra el evento click UPDATE.                 ok 
-// Esta funcion hay que llamarla desde documento.ready y desde crear un player. Exactamente igual que linkEventClickDelete            ok
-
-// Cuando el usuario hace click en Update mostramos la informacion de la fila en el formulario.                     ok
-
-// Añadir otro boton en el formulario para hacer el update.                         ok
-// Cuando el usuario hace click en este boton hacemos la petición PUT al servidor
-
-// Cuando el servidor response, borramos la fila y la creamos otra vez con los datos del player que viene desde el servidor.
-// Importante, tendremos que llamar a las funciones de enlazar los eventos DELETE y UPDATE otra vez porque hemos creado una fila dinamicamente.
-
-// Borrar la informacion del formulario
+$("#clean").click(function () {
+    textBoxDelete();
+});
