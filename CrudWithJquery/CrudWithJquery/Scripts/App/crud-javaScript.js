@@ -31,55 +31,41 @@
     }
 }
 
+function putPlayerInTable(player) {
+    var table = window.document.getElementById("tbPlayers");
+
+    var trNew = table.insertRow(0);
+
+    var playerId = trNew.insertCell(-1);
+    var name = trNew.insertCell(0);
+    var surname = trNew.insertCell(1);
+    var position = trNew.insertCell(2);
+    var strongLeg = trNew.insertCell(3);
+    var age = trNew.insertCell(4);
+    var playerNumber = trNew.insertCell(5);
+    var tdDelete = trNew.insertCell(6);
+    var tdUpdate = trNew.insertCell(7);
+
+   
+
+    playerId.style.visibility = "hidden";
+
+    window.document.getElementById("name").innetHTML = player.name;
+    window.document.getElementById("surname").innetHTML = player.surname;
+    window.document.getElementById("position").innetHTML = player.position;
+    window.document.getElementById("strongLeg").innetHTML = player.strongLeg;
+    window.document.getElementById("age").innetHTML = player.age;
+    window.document.getElementById("number").innetHTML = player.playerNumber;
+    
+}
 
 
+ajax("GET", "http://localhost:13503/api/players", null, function (players) {
+    console.log(players);
 
-ajax("GET", "http://localhost:13503/api/players", null, function (data) {
-    console.log(data);
-
-    var table = document.createElement('table');
-    for (var i = 0; i < data.length; i++) {
-        var tr = document.createElement('tr');
-
-        var tdName = document.createElement('td');
-        var tdSurName = document.createElement('td');
-        var tdPosition = document.createElement('td');
-        var tdStrongLeg = document.createElement('td');
-        var tdAge = document.createElement('td');
-        var tdNumber = document.createElement('td');
-        var tdDelete = document.createElement('td');
-        var tdUpdate = document.createElement('td');
-
-        var name = document.createTextNode(player.name);
-        var surname = document.createTextNode(data.surname);
-        var position = document.createTextNode(data.position);
-        var strongLeg = document.createTextNode(data.strongLeg);
-        var age = document.createTextNode(data.age);
-        var number = document.createTextNode(data.playerNumber);
-        var clean = document.createTextNode("delete");
-        var update = document.createTextNode("update");
-
-        tdName.appendChild(name);
-        tdSurName.appendChild(surname);
-        tdPosition.appendChild(position);
-        tdStrongLeg.appendChild(strongLeg);
-        tdAge.appendChild(age);
-        tdNumber.appendChild(number);
-        tdDelete.appendChild(clean);
-        tdUpdate.appendChild(update);
-
-        tr.appendChild(tdName);
-        tr.appendChild(tdSurName);
-        tr.appendChild(tdPosition);
-        tr.appendChild(tdStrongLeg);
-        tr.appendChild(tdAge);
-        tr.appendChild(tdNumber);
-        tr.appendChild(tdDelete);
-        tr.appendChild(tdUpdate);
-
-        table.appendChild(tr);
+    for (var i = 0; i < players.length; i++) {
+        putPlayerInTable(players);
     }
-    document.body.appendChild(table);
 });
 
 
