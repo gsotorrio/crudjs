@@ -31,42 +31,36 @@
     }
 }
 
-function putPlayerInTable(player) {
-    var table = window.document.getElementById("tbPlayers");
+function putNewPlayerInTable(player) {
+    window.document.getElementById("dynamicTr").innerHTML =
+        "<tr id='" + player.playerId + "'><td class='hideId'>"
+        + player.playerId +
+        "</td><td>"
+        + player.name +
+        "</td><td>"
+        + player.surname +
+        "</td><td>"
+        + player.position +
+        "</td><td>"
+        + player.strongLeg +
+        "</td><td>"
+        + player.age +
+        "</td><td>"
+        + player.playerNumber +
+        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#' class='update'>Update</a></td></tr>";
 
-    var trNew = table.insertRow(0);
-
-    var playerId = trNew.insertCell(-1);
-    var name = trNew.insertCell(0);
-    var surname = trNew.insertCell(1);
-    var position = trNew.insertCell(2);
-    var strongLeg = trNew.insertCell(3);
-    var age = trNew.insertCell(4);
-    var playerNumber = trNew.insertCell(5);
-    var tdDelete = trNew.insertCell(6);
-    var tdUpdate = trNew.insertCell(7);
-
-   
-
-    playerId.style.visibility = "hidden";
-
-    window.document.getElementById("name").innetHTML = player.name;
-    window.document.getElementById("surname").innetHTML = player.surname;
-    window.document.getElementById("position").innetHTML = player.position;
-    window.document.getElementById("strongLeg").innetHTML = player.strongLeg;
-    window.document.getElementById("age").innetHTML = player.age;
-    window.document.getElementById("number").innetHTML = player.playerNumber;
-    
+    return(window.document.getElementById("dynamicTr").innerHTML);
 }
-
 
 ajax("GET", "http://localhost:13503/api/players", null, function (players) {
     console.log(players);
 
+    var savePlayersForTable = "";
+    
     for (var i = 0; i < players.length; i++) {
-        putPlayerInTable(players);
+        savePlayersForTable += putNewPlayerInTable(players[i]);
     }
+    window.document.getElementById("dynamicTr").innerHTML = savePlayersForTable;
 });
-
 
 
