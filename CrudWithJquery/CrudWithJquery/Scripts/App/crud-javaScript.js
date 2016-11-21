@@ -63,10 +63,6 @@ ajax("GET", "http://localhost:13503/api/players", null, function (players) {
     window.document.getElementById("dynamicTr").innerHTML = savePlayersForTable;
 });
 
-ajax("POST", "http://localhost:13503/api/players", json, function (data) {
-    console.log(data);
-});
-
 function cleanFormulary() {
     window.document.getElementById("nameFormulay").value = "";
     window.document.getElementById("surnameFormulay").value = "";
@@ -76,4 +72,22 @@ function cleanFormulary() {
     window.document.getElementById("numberFormulay").value = "";
 }
 
+function createNewPlayer() {
+    var name = window.document.getElementById("nameFormulay").value;
+    var surname = window.document.getElementById("surnameFormulay").value;
+    var position = window.document.getElementById("positionFormulay").value;
+    var strongLeg = window.document.getElementById("strongLegFormulay");
+    var age = window.document.getElementById("ageFormulay").value;
+    var number = window.document.getElementById("numberFormulay").value;
 
+    ajax("POST", "http://localhost:13503/api/players", {
+        "name": name,
+        "surname": surname,
+        "position": position,
+        "strongLeg": strongLeg,
+        "age": age,
+        "playerNumber": number
+    }, function (newPlayer) {
+        console.log(newPlayer);
+    });
+}
