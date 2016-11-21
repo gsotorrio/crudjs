@@ -63,4 +63,17 @@ ajax("GET", "http://localhost:13503/api/players", null, function (players) {
     window.document.getElementById("dynamicTr").innerHTML = savePlayersForTable;
 });
 
+ajax("POST", "http://localhost:13503/api/players", json, function (data) {
+    console.log(data);
+});
+
+function cleanFormulary() {
+    window.document.getElementById("nameFormulay").value = "";
+    window.document.getElementById("surnameFormulay").value = "";
+    window.document.getElementById("positionFormulay").value = "";
+    window.document.getElementById("strongLegFormulay").value = "";
+    window.document.getElementById("ageFormulay").value = "";
+    window.document.getElementById("numberFormulay").value = "";
+}
+
 
