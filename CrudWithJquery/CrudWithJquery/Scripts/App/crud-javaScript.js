@@ -11,7 +11,7 @@
     httpRequest.onreadystatechange = function () {
 
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            if (httpRequest.status === 200) {
+            if (httpRequest.status === 200 || httpRequest.status === 201 || httpRequest.status === 204) {
                 var responseJson = JSON.parse(httpRequest.responseText);
                 callback(responseJson);
             } else {
@@ -73,21 +73,20 @@ function cleanFormulary() {
 }
 
 function createNewPlayer() {
-    var name = window.document.getElementById("nameFormulay").value;
-    var surname = window.document.getElementById("surnameFormulay").value;
-    var position = window.document.getElementById("positionFormulay").value;
-    var strongLeg = window.document.getElementById("strongLegFormulay");
-    var age = window.document.getElementById("ageFormulay").value;
-    var number = window.document.getElementById("numberFormulay").value;
 
     ajax("POST", "http://localhost:13503/api/players", {
-        "name": name,
-        "surname": surname,
-        "position": position,
-        "strongLeg": strongLeg,
-        "age": age,
-        "playerNumber": number
-    }, function (newPlayer) {
-        console.log(newPlayer);
+        "name": window.document.getElementById("nameFormulay").value,
+        "surname": window.document.getElementById("surnameFormulay").value,
+        "position": window.document.getElementById("positionFormulay").value,
+        "strongLeg": window.document.getElementById("strongLegFormulay").value,
+        "age": window.document.getElementById("ageFormulay").value,
+        "playerNumber": window.document.getElementById("numberFormulay").value
+    }, function (player) {
+
+        putNewPlayerInTable(player);
+       
+        
+
+        cleanFormulary();
     });
 }
