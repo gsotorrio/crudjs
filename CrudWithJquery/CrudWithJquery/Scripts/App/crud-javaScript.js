@@ -47,7 +47,13 @@ function createTrPlayer(player) {
         + player.age +
         "</td><td>"
         + player.playerNumber +
-        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#' class='update'>Update</a></td></tr>");
+        "</td><td><a href='#' class='delete' onclick='deleteOneplayer();'>Delete</a></td><td><a href='#' class='update'>Update</a></td></tr>");
+}
+
+function deleteOneplayer() {
+    var aPlayer = window.document.getElementsByClassName("delete");
+
+    ajax("DELETE", "http://localhost:13503/api/players" + trPlayer.id)
 }
 
 ajax("GET", "http://localhost:13503/api/players", null, function (players) {
@@ -86,4 +92,8 @@ function createNewPlayer() {
        
         cleanFormulary();
     });
+}
+
+function deleteOnePlayer() {
+
 }
