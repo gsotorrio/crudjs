@@ -31,8 +31,8 @@
     }
 }
 
-function putNewPlayerInTable(player) {
-    window.document.getElementById("dynamicTr").innerHTML =
+function createTrPlayer(player) {
+    return(
         "<tr id='" + player.playerId + "'><td class='hideId'>"
         + player.playerId +
         "</td><td>"
@@ -47,9 +47,7 @@ function putNewPlayerInTable(player) {
         + player.age +
         "</td><td>"
         + player.playerNumber +
-        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#' class='update'>Update</a></td></tr>";
-
-    return(window.document.getElementById("dynamicTr").innerHTML);
+        "</td><td><a href='#' class='delete'>Delete</a></td><td><a href='#' class='update'>Update</a></td></tr>");
 }
 
 ajax("GET", "http://localhost:13503/api/players", null, function (players) {
@@ -58,7 +56,7 @@ ajax("GET", "http://localhost:13503/api/players", null, function (players) {
     var savePlayersForTable = "";
     
     for (var i = 0; i < players.length; i++) {
-        savePlayersForTable += putNewPlayerInTable(players[i]);
+        savePlayersForTable += createTrPlayer(players[i]);
     }
     window.document.getElementById("dynamicTr").innerHTML = savePlayersForTable;
 });
@@ -82,11 +80,10 @@ function createNewPlayer() {
         "age": window.document.getElementById("ageFormulay").value,
         "playerNumber": window.document.getElementById("numberFormulay").value
     }, function (player) {
+        var playersInTable = window.document.getElementById("dynamicTr").innerHTML;
 
-        putNewPlayerInTable(player);
+        window.document.getElementById("dynamicTr").innerHTML = playersInTable + createTrPlayer(player);
        
-        
-
         cleanFormulary();
     });
 }
