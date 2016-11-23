@@ -55,7 +55,7 @@ function deleteOnePlayer(anchor) {
   
     ajax("DELETE", "http://localhost:13503/api/players/" + id, null, function (player) {
         removeElement(window.document.getElementById(id));
-    });
+    });        
 }
 
 ajax("GET", "http://localhost:13503/api/players", null, function (players) {
