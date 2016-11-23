@@ -53,8 +53,9 @@ function createTrPlayer(player) {
 function deleteOnePlayer(anchor) {
     var id = anchor.parentElement.parentElement.id;
   
-    ajax("DELETE", "http://localhost:13503/api/players/" + id, null, function (player) {
-        removeElement(window.document.getElementById(id));
+    ajax("DELETE", "http://localhost:13503/api/players/" + id, null, function () {
+        var trPlayer = window.document.getElementById(id);
+        trPlayer.parentNode.removeChild(trPlayer);
     });        
 }
 
