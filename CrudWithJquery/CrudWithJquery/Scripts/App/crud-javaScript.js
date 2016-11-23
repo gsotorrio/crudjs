@@ -12,8 +12,12 @@
 
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
             if (httpRequest.status === 200 || httpRequest.status === 201 || httpRequest.status === 204) {
-                var responseJson = JSON.parse(httpRequest.responseText);
-                callback(responseJson);
+                if (httpRequest.responseText) {
+                    var responseJson = JSON.parse(httpRequest.responseText);
+                    callback(responseJson);
+                } else {
+                    callback();
+                }
             } else {
                 console.log("An error occurred during your request: " + httpRequest.status + " " + httpRequest.statusText);
             }
