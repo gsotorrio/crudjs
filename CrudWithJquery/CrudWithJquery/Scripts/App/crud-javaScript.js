@@ -128,7 +128,10 @@ function changePlayerDatas() {
         "playerNumber": window.document.getElementById("numberFormulay").value
     }
     
-    ajax("PUT", "http://localhost:13503/api/players/" + idPlayerWhenPressUptadeInTable, jsonPlayer, function () {
-
+    ajax("PUT", "http://localhost:13503/api/players/" + idPlayerWhenPressUptadeInTable, jsonPlayer, function (player) {
+        console.log(player);
+        var a = window.document.getElementById(player.playerId).childNodes[1];
+        a = window.document.getElementById("nameFormulary").innerText;
     });
+    cleanFormulary();
 }
