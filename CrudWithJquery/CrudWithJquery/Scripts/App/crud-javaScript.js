@@ -129,9 +129,14 @@ function changePlayerDatas() {
     }
     
     ajax("PUT", "http://localhost:13503/api/players/" + idPlayerWhenPressUptadeInTable, jsonPlayer, function (player) {
-        console.log(player);
-        var a = window.document.getElementById(player.playerId).childNodes[1];
-        a = window.document.getElementById("nameFormulary").innerText;
+        
+        window.document.getElementById(player.playerId).childNodes[1].innerHTML = player.name;
+        window.document.getElementById(player.playerId).childNodes[2].innerHTML = player.surname;
+        window.document.getElementById(player.playerId).childNodes[3].innerHTML = player.position;
+        window.document.getElementById(player.playerId).childNodes[4].innerHTML = player.strongLeg;
+        window.document.getElementById(player.playerId).childNodes[5].innerHTML = player.age;
+        window.document.getElementById(player.playerId).childNodes[6].innerHTML = player.playerNumber;
     });
     cleanFormulary();
 }
+
