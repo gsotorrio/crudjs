@@ -51,7 +51,7 @@ function createTrPlayer(player) {
         + player.age +
         "</td><td>"
         + player.playerNumber +
-        "</td><td><a href='#' class='delete' onclick='deleteOnePlayer(this);'>Delete</a></td><td><a href='#' class='update'>Update</a></td></tr>");
+        "</td><td><a href='#' class='delete' onclick='deleteOnePlayer(this);'>Delete</a></td><td><a href='#' class='update' onclick='putDatasPlayerInFormulary(this);'>Update</a></td></tr>");
 }
 
 function deleteOnePlayer(anchor) {
@@ -61,6 +61,21 @@ function deleteOnePlayer(anchor) {
         var trPlayer = window.document.getElementById(id);
         trPlayer.parentNode.removeChild(trPlayer);
     });        
+}
+
+function putDatasPlayerInFormulary(anchor) {
+    var id = anchor.parentElement.parentElement.id;
+
+    ajax("GET", "http://localhost:13503/api/players/" + id, null, function (player) {
+        console.log(player);
+
+        window.document.getElementById("nameFormulay").value = player.name;
+        window.document.getElementById("surnameFormulay").value = player.surname;
+        window.document.getElementById("positionFormulay").value = player.position;
+        window.document.getElementById("strongLegFormulay").value = player.strongLeg;
+        window.document.getElementById("ageFormulay").value = player.age;
+        window.document.getElementById("numberFormulay").value = player.playerNumber;
+    });
 }
 
 ajax("GET", "http://localhost:13503/api/players", null, function (players) {
