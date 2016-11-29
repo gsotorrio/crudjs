@@ -37,3 +37,9 @@ td{
 .button {
     margin-right: 50px;
 }
+
+.sideForm {
+    width: 8.5%;
+	float: left;
+	padding-right: 10px;
+}

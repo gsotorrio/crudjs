@@ -2,24 +2,42 @@
     @Scripts.Render("~/bundles/crud-js")
 }
 
-
 <h2>Create Players</h2>
-Name: <input id="nameFormulay" type="text" name="name">
-<br />
-Surname: <input id="surnameFormulay" type="text" name="surname">
-<br />
-Position: <input id="positionFormulay" type="text" name="position">
-<br />
-Strong Leg: <input id="strongLegFormulay" type="text" name="strongLeg">
-<br />
-Age: <input id="ageFormulay" type="text" name="age">
-<br />
-Number: <input id="numberFormulay" type="text" name="number">
-<br />
-<br />
-<input id="create" type="button" value="Save" class="button" onclick="createNewPlayer();">
-<input id="clean" type="button" value="Cancel" class="button" onclick="cleanFormulary();">
-<input id="update" type="button" value="Update" onclick="changePlayerDatas();">
+<form class="Contenedor">
+    <p>
+        <label class="sideForm" for="">Name:</label>
+        <input id="nameFormulay" type="text" name="name">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Surname:</label>
+        <input id="surnameFormulay" type="text" name="surname">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Position:</label>
+        <input id="positionFormulay" type="text" name="position">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Strong Leg:</label>
+        <input id="strongLegFormulay" type="text" name="strongLeg">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Age:</label>
+        <input id="ageFormulay" type="text" name="age">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Number:</label>
+        <input id="numberFormulay" type="text" name="number">
+    </p>
+    <br />
+    <input id="create" type="button" value="Save" class="button" onclick="createNewPlayer();">
+    <input id="clean" type="button" value="Cancel" class="button" onclick="cleanFormulary();">
+    <input id="update" type="button" value="Update" onclick="changePlayerDatas();">
+</form>
 
 
 <h2>List of Players</h2>

@@ -39,7 +39,7 @@ function createTrPlayer(player) {
     return(
         "<tr id='" + player.playerId + "'><td class='hideId'>"
         + player.playerId +
-        "</td><td>"
+        "</td><td class='name'>"
         + player.name +
         "</td><td>"
         + player.surname +
