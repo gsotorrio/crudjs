@@ -56,6 +56,15 @@ function createTrPlayer(player) {
 
 var idPlayerWhenPressUptadeInTable;
 
+function jsonPlayer() {
+    name: window.document.getElementById("nameFormulay").value,
+    surname: window.document.getElementById("surnameFormulay").value,
+    position: window.document.getElementById("positionFormulay").value,
+    strongLeg: window.document.getElementById("strongLegFormulay").value,
+    age: window.document.getElementById("ageFormulay").value,
+    playerNumber: window.document.getElementById("numberFormulay").value
+}
+
 function deleteOnePlayer(anchor) {
     var id = anchor.parentElement.parentElement.id;
   
@@ -102,14 +111,7 @@ function cleanFormulary() {
 
 function createNewPlayer() {
 
-    ajax("POST", "http://localhost:13503/api/players", {
-        "name": window.document.getElementById("nameFormulay").value,
-        "surname": window.document.getElementById("surnameFormulay").value,
-        "position": window.document.getElementById("positionFormulay").value,
-        "strongLeg": window.document.getElementById("strongLegFormulay").value,
-        "age": window.document.getElementById("ageFormulay").value,
-        "playerNumber": window.document.getElementById("numberFormulay").value
-    }, function (player) {
+    ajax("POST", "http://localhost:13503/api/players", jsonPlayer(), function (player) {
         var playersInTable = window.document.getElementById("dynamicTr").innerHTML;
 
         window.document.getElementById("dynamicTr").innerHTML = playersInTable + createTrPlayer(player);
@@ -119,16 +121,8 @@ function createNewPlayer() {
 }
 
 function changePlayerDatas() {
-    var jsonPlayer = {
-        "name": window.document.getElementById("nameFormulay").value,
-        "surname": window.document.getElementById("surnameFormulay").value,
-        "position": window.document.getElementById("positionFormulay").value,
-        "strongLeg": window.document.getElementById("strongLegFormulay").value,
-        "age": window.document.getElementById("ageFormulay").value,
-        "playerNumber": window.document.getElementById("numberFormulay").value
-    }
     
-    ajax("PUT", "http://localhost:13503/api/players/" + idPlayerWhenPressUptadeInTable, jsonPlayer, function (player) {
+    ajax("PUT", "http://localhost:13503/api/players/" + idPlayerWhenPressUptadeInTable, jsonPlayer(), function (player) {
         
         window.document.getElementById(player.playerId).childNodes[1].innerText = player.name;
         window.document.getElementById(player.playerId).childNodes[2].innerText = player.surname;
