@@ -36,22 +36,51 @@
 }
 
 function createTrPlayer(player) {
-    return(
-        "<tr id='" + player.playerId + "'><td class='hideId'>"
-        + player.playerId +
-        "</td><td class='name'>"
-        + player.name +
-        "</td><td>"
-        + player.surname +
-        "</td><td>"
-        + player.position +
-        "</td><td>"
-        + player.strongLeg +
-        "</td><td>"
-        + player.age +
-        "</td><td>"
-        + player.playerNumber +
-        "</td><td><a href='#' class='delete' onclick='deleteOnePlayer(this);'>Delete</a></td><td><a href='#' class='update' onclick='putDatasPlayerInFormulary(this);'>Update</a></td></tr>");
+  
+    var mytbody = window.document.getElementById('dynamicTr');
+
+    var row = window.document.createElement('tr');
+
+    var cellId = window.document.createElement('td');
+        cellId.className = "hideId";
+    var cellName = window.document.createElement('td');
+    var cellSurname = window.document.createElement('td');
+    var cellPosition = window.document.createElement('td');
+    var cellStrongLeg = window.document.createElement('td');
+    var cellAge = window.document.createElement('td');
+    var cellNumber = window.document.createElement('td');
+    var cellDelete = window.document.createElement('td');
+    var cellUpdate = window.document.createElement('td');
+
+    var textId = window.document.createTextNode(player.playerId);
+    var textName = window.document.createTextNode(player.name);
+    var textSurname = window.document.createTextNode(player.surname);
+    var textPosition = window.document.createTextNode(player.position);
+    var textStrongLeg = window.document.createTextNode(player.strongLeg);
+    var textage = window.document.createTextNode(player.age);
+    var textNumber = window.document.createTextNode(player.playerNumber);
+    cellDelete.innerHTML = "<a href='#'>" + "Delete" + "</a>";
+    cellUpdate.innerHTML = "<a href='#'>" + "Update" + "</a>";
+
+    cellId.appendChild(textId);
+    cellName.appendChild(textName);
+    cellSurname.appendChild(textSurname);
+    cellPosition.appendChild(textPosition);
+    cellStrongLeg.appendChild(textStrongLeg);
+    cellAge.appendChild(textage);
+    cellNumber.appendChild(textNumber);
+
+    row.appendChild(cellId);
+    row.appendChild(cellName);
+    row.appendChild(cellSurname);
+    row.appendChild(cellPosition);
+    row.appendChild(cellStrongLeg);
+    row.appendChild(cellAge);
+    row.appendChild(cellNumber);
+    row.appendChild(cellDelete);
+    row.appendChild(cellUpdate);
+
+    mytbody.appendChild(row);
 }
 
 var idPlayerWhenPressUptadeInTable;
