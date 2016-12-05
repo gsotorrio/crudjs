@@ -52,6 +52,13 @@ function createTrPlayer(player) {
     var cellDelete = window.document.createElement('td');
     var cellUpdate = window.document.createElement('td');
 
+    var aDelete = window.document.createElement('a');
+        aDelete.className = "delete";
+        aDelete.href = "#";
+        aDelete.onclick = function (aDelete) { deleteOnePlayer; };
+
+    var aUpdate = window.document.createElement('a');
+        
     var textId = window.document.createTextNode(player.playerId);
     var textName = window.document.createTextNode(player.name);
     var textSurname = window.document.createTextNode(player.surname);
@@ -59,8 +66,7 @@ function createTrPlayer(player) {
     var textStrongLeg = window.document.createTextNode(player.strongLeg);
     var textage = window.document.createTextNode(player.age);
     var textNumber = window.document.createTextNode(player.playerNumber);
-    cellDelete.innerHTML = "<a href='#'>" + "Delete" + "</a>";
-    cellUpdate.innerHTML = "<a href='#'>" + "Update" + "</a>";
+   
 
     cellId.appendChild(textId);
     cellName.appendChild(textName);
@@ -69,6 +75,7 @@ function createTrPlayer(player) {
     cellStrongLeg.appendChild(textStrongLeg);
     cellAge.appendChild(textage);
     cellNumber.appendChild(textNumber);
+    
 
     row.appendChild(cellId);
     row.appendChild(cellName);
@@ -79,6 +86,15 @@ function createTrPlayer(player) {
     row.appendChild(cellNumber);
     row.appendChild(cellDelete);
     row.appendChild(cellUpdate);
+
+    cellDelete.appendChild(aDelete);
+    cellUpdate.appendChild(aUpdate);
+
+    var textDelete = window.document.createTextNode("Delete");
+    var textUpdate = window.document.createTextNode("Update");
+
+    aDelete.appendChild(textDelete);
+    aUpdate.appendChild(textUpdate);
 
     mytbody.appendChild(row);
 }
@@ -97,8 +113,8 @@ function getJsonPlayer() {
 }
 
 function deleteOnePlayer(anchor) {
+    var jas = window.document.getElementsByClassName("delete");
     var id = anchor.parentElement.parentElement.id;
-  
     ajax("DELETE", "http://localhost:13503/api/players/" + id, null, function () {
         var trPlayer = window.document.getElementById(id);
         trPlayer.parentNode.removeChild(trPlayer);
@@ -123,12 +139,9 @@ function putDatasPlayerInFormulary(anchor) {
 ajax("GET", "http://localhost:13503/api/players", null, function (players) {
     console.log(players);
 
-    var savePlayersForTable = "";
-    
     for (var i = 0; i < players.length; i++) {
-        savePlayersForTable += createTrPlayer(players[i]);
+        createTrPlayer(players[i]);
     }
-    window.document.getElementById("dynamicTr").innerHTML = savePlayersForTable;
 });
 
 function cleanFormulary() {
