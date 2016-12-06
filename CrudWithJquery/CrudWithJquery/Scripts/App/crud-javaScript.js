@@ -53,9 +53,8 @@ function createTrPlayer(player) {
     var cellUpdate = window.document.createElement('td');
 
     var aDelete = window.document.createElement('a');
-        aDelete.className = "delete";
         aDelete.href = "#";
-        aDelete.onclick = function (aDelete) { deleteOnePlayer; };
+        aDelete.onclick = function () { deleteOnePlayer(this); };
 
     var aUpdate = window.document.createElement('a');
         
@@ -113,8 +112,8 @@ function getJsonPlayer() {
 }
 
 function deleteOnePlayer(anchor) {
-    var jas = window.document.getElementsByClassName("delete");
-    var id = anchor.parentElement.parentElement.id;
+    var id = anchor.parentElement.parentElement.firstChild.innerHTML;
+
     ajax("DELETE", "http://localhost:13503/api/players/" + id, null, function () {
         var trPlayer = window.document.getElementById(id);
         trPlayer.parentNode.removeChild(trPlayer);
