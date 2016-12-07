@@ -43,6 +43,7 @@ function createTrPlayer(player) {
 
     var cellId = window.document.createElement('td');
         cellId.className = "hideId";
+    
     var cellName = window.document.createElement('td');
     var cellSurname = window.document.createElement('td');
     var cellPosition = window.document.createElement('td');
@@ -57,6 +58,8 @@ function createTrPlayer(player) {
         aDelete.onclick = function () { deleteOnePlayer(this); };
 
     var aUpdate = window.document.createElement('a');
+        aUpdate.href = "#";
+        aUpdate.onclick = function () { putDatasPlayerInFormulary(this); };
         
     var textId = window.document.createTextNode(player.playerId);
     var textName = window.document.createTextNode(player.name);
@@ -75,6 +78,7 @@ function createTrPlayer(player) {
     cellAge.appendChild(textage);
     cellNumber.appendChild(textNumber);
     
+    row.id = cellId.innerText;
 
     row.appendChild(cellId);
     row.appendChild(cellName);
@@ -115,17 +119,17 @@ function deleteOnePlayer(anchor) {
     var id = anchor.parentElement.parentElement.firstChild.innerHTML;
 
     ajax("DELETE", "http://localhost:13503/api/players/" + id, null, function () {
-        var trPlayer = window.document.getElementById(id);
+        var trPlayer = anchor.parentElement.parentElement;
         trPlayer.parentNode.removeChild(trPlayer);
     });        
 }
 
 function putDatasPlayerInFormulary(anchor) {
-    var id = anchor.parentElement.parentElement.id;
+    var id = anchor.parentElement.parentElement.firstChild.innerHTML;
     idPlayerWhenPressUptadeInTable = id;
 
     ajax("GET", "http://localhost:13503/api/players/" + id, null, function (player) {
-        
+         
         window.document.getElementById("nameFormulay").value = player.name;
         window.document.getElementById("surnameFormulay").value = player.surname;
         window.document.getElementById("positionFormulay").value = player.position;
@@ -155,10 +159,9 @@ function cleanFormulary() {
 function createNewPlayer() {
 
     ajax("POST", "http://localhost:13503/api/players", getJsonPlayer(), function (player) {
-        var playersInTable = window.document.getElementById("dynamicTr").innerHTML;
 
-        window.document.getElementById("dynamicTr").innerHTML = playersInTable + createTrPlayer(player);
-       
+        createTrPlayer(player);
+        
         cleanFormulary();
     });
 }
@@ -176,4 +179,3 @@ function changePlayerDatas() {
     });
     cleanFormulary();
 }
-
