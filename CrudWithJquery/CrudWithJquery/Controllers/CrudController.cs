@@ -18,5 +18,10 @@ namespace CrudWithJquery.Controllers
         {
             return View();
         }
+
+        public ActionResult Knockout()
+        {
+            return View();
+        }
     }
 }

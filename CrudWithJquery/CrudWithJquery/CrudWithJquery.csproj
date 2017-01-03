@@ -220,6 +220,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Crud\Jquery.cshtml" />
     <Content Include="Views\Crud\JavaScript.cshtml" />
+    <Content Include="Views\Crud\Knockout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
