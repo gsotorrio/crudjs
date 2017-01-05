@@ -9,13 +9,17 @@ namespace CrudWithJquery
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/knockout-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/crud-jquery").Include(
                         "~/Scripts/App/crud-jQuery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/crud-js").Include(
                         "~/Scripts/App/crud-javaScript.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/crud-ko").Include(
+            "~/Scripts/App/crud-ko.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
