@@ -3,11 +3,54 @@
 }
 
 <h2>Create Players</h2>
-<form class="Contenedor">
-   
-</form>
+Name: <input id="name" type="text" name="name">
+<br />
+Surname: <input id="surname" type="text" name="surname">
+<br />
+Position: <input id="position" type="text" name="position">
+<br />
+Strong Leg: <input id="strongLeg" type="text" name="strongLeg">
+<br />
+Age: <input id="age" type="text" name="age">
+<br />
+Number: <input id="number" type="text" name="number">
+<br />
+<br />
+<input id="create" type="button" value="Save" class="button">
+<input id="clean" type="button" value="Cancel" class="button">
+<input id="update" type="button" value="Update">
 
 
 <h2>List of Players</h2>
+
+<table id="tbPlayers" class="table">
+    <thead>
+        <tr>
+            <th class="hideId">Player Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Position</th>
+            <th>Strong Leg</th>
+            <th>Age</th>
+            <th>Number</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: players">
+        <tr>
+            <td class="hideId" data-bind="tetx: playerId"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: surname"></td>
+            <td data-bind="text: position"></td>
+            <td data-bind="text: strongLeg"></td>
+            <td data-bind="text: age"></td>
+            <td data-bind="text: playerNumber"></td>
+            <td data-bind="click: $root.remove">Delete</td>
+            <td>Update</td>
+        </tr>
+    </tbody>
+</table>
+
 
 
