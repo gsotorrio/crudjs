@@ -3,6 +3,7 @@
 }
 
 <h2>Create Players</h2>
+<<<<<<< HEAD
 <form class="Contenedor">
     <p>
         <label class="sideForm" for="">Name:</label>
@@ -38,6 +39,24 @@
     <input id="clean" type="button" value="Cancel" class="button" onclick="cleanFormulary();">
     <input id="update" type="button" value="Update" onclick="changePlayerDatas();">
 </form>
+=======
+Name: <input id="name" type="text" name="name">
+<br />
+Surname: <input id="surname" type="text" name="surname">
+<br />
+Position: <input id="position" type="text" name="position">
+<br />
+Strong Leg: <input id="strongLeg" type="text" name="strongLeg">
+<br />
+Age: <input id="age" type="text" name="age">
+<br />
+Number: <input id="number" type="text" name="number">
+<br />
+<br />
+<input id="create" type="button" value="Save" class="button">
+<input id="clean" type="button" value="Cancel" class="button">
+<input id="update" type="button" value="Update">
+>>>>>>> 6fd8d59649e2c05ff86ab9227bbf974354f17902
 
 
 <h2>List of Players</h2>
@@ -56,8 +75,27 @@
             <th></th>
         </tr>
     </thead>
+<<<<<<< HEAD
 
     <tbody id="dynamicTr"></tbody>
 
 </table>
+=======
+    <tbody data-bind="foreach: players">
+        <tr>
+            <td class="hideId" data-bind="tetx: playerId"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: surname"></td>
+            <td data-bind="text: position"></td>
+            <td data-bind="text: strongLeg"></td>
+            <td data-bind="text: age"></td>
+            <td data-bind="text: playerNumber"></td>
+            <td data-bind="click: $root.remove">Delete</td>
+            <td>Update</td>
+        </tr>
+    </tbody>
+</table>
+
+
+>>>>>>> 6fd8d59649e2c05ff86ab9227bbf974354f17902
 
