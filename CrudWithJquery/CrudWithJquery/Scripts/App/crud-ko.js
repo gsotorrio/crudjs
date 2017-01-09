@@ -2,7 +2,14 @@
 
     // Variables
     var players = ko.observableArray();
-    var playerUpdate = ko.observable;
+    var playerUpdate = {
+        name: ko.observable(),
+        surname: ko.observable(),
+        position: ko.observable(),
+        strongLeg: ko.observable(),
+        age: ko.observable(),
+        playerNumber: ko.observable()
+    };
 
     // Functions
     var remove = function(player, event){
@@ -17,8 +24,13 @@
     var update = function (player) {
         $.get("http://localhost:13503/api/players/" + player.playerId, function (data) {
             console.log(data);
-
-            playerUpdate(data);
+            
+            playerUpdate.name(data.name);
+            playerUpdate.surname(data.surname);
+            playerUpdate.position(data.position);
+            playerUpdate.strongLeg(data.strongLeg);
+            playerUpdate.age(data.age);
+            playerUpdate.playerNumber(data.playerNumber);
         });
     }
 
@@ -26,7 +38,8 @@
     var viewModel = {
         players: players,
         remove: remove,
-        update: update
+        update: update,
+        playerUpdate: playerUpdate
     };
 
     // On initialize
