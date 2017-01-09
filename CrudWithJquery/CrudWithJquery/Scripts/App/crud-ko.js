@@ -2,6 +2,7 @@
 
     // Variables
     var players = ko.observableArray();
+    var playerUpdate = ko.observable;
 
     // Functions
     var remove = function(player, event){
@@ -16,7 +17,8 @@
     var update = function (player) {
         $.get("http://localhost:13503/api/players/" + player.playerId, function (data) {
             console.log(data);
-            
+
+            playerUpdate(data);
         });
     }
 
