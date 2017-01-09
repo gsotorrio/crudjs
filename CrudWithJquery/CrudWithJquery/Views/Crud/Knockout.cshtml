@@ -4,10 +4,60 @@
 
 <h2>Create Players</h2>
 <form class="Contenedor">
-   
+    <p>
+        <label class="sideForm" for="">Name:</label>
+        <input data-bind="value: name" type="text" name="name">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Surname:</label>
+        <input data-bind="value: surname" type="text" name="surname">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Position:</label>
+        <input data-bind="value: position" type="text" name="position">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Strong Leg:</label>
+        <input data-bind="value: strongLeg" type="text" name="strongLeg">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Age:</label>
+        <input data-bind="value: age" type="text" name="age">
+    </p>
+
+    <p>
+        <label class="sideForm" for="">Number:</label>
+        <input data-bind="value: numberPlayer" type="text" name="number">
+    </p>
+    <br />
+    <button data-bind="click: addNewRow" class="button">Save</button>
+    <input id="clean" type="button" value="Cancel" class="button" onclick="cleanFormulary();">
+    <input id="update" type="button" value="Update" onclick="changePlayerDatas();">
 </form>
 
 
 <h2>List of Players</h2>
 
+<table id="tbPlayers" class="table">
+    <thead>
+        <tr>
+            <th class="hideId">Player Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Position</th>
+            <th>Strong Leg</th>
+            <th>Age</th>
+            <th>Number</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody id="dynamicTr"></tbody>
+
+</table>
 
