@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"PlayerId":"da3e819d-c4ac-489a-9b92-5008f1f79503","Name":"Oliver","Surname":"Aton","Position":"Ala","StrongLeg":"left","Age":12,"PlayerNumber":10},{"PlayerId":"d2a71a58-e863-40aa-93d7-3eae4966897e","Name":"Philip","Surname":"Calahan","Position":"Ala","StrongLeg":"right","Age":12,"PlayerNumber":7},{"PlayerId":"fc1e2fc2-60be-482d-918f-4085daca29c7","Name":"Ez","Surname":"Warner","Position":"Portero","StrongLeg":"left","Age":12,"PlayerNumber":1},{"PlayerId":"4967909d-143c-4ad1-bb06-2cabca95396f","Name":"Dani","Surname":"Melow","Position":"Ala","StrongLeg":"right","Age":12,"PlayerNumber":158}]
-=======
 [{"PlayerId":"da3e819d-c4ac-489a-9b92-5008f1f79503","Name":"Oliver","Surname":"Aton","Position":"Ala","StrongLeg":"left","Age":12,"PlayerNumber":10},{"PlayerId":"7a496947-2fd1-490d-9ff8-c9cf0ab16b97","Name":"Bruce","Surname":"Arper","Position":"Cierre","StrongLeg":"Right","Age":12,"PlayerNumber":3},{"PlayerId":"4e84307b-35d8-42a3-8025-f7849459e6e6","Name":"Tom","Surname":"Beicker","Position":"Ala","StrongLeg":"right","Age":12,"PlayerNumber":11}]
->>>>>>> 6fd8d59649e2c05ff86ab9227bbf974354f17902

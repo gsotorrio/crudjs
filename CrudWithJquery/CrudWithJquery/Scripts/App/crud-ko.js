@@ -1,28 +1,4 @@
-<<<<<<< HEAD
-﻿function SaveDatas() {
-    this.playerId = ko.observable();
-    this.name = ko.observable();
-    this.surname = ko.observable();
-    this.position = ko.observable();
-    this.strongLeg = ko.observable();
-    this.age = ko.observable();
-    this.numberPlayer = ko.observable();
-}
-
-function AddPlayersInTable() {
-    var self = this;
-
-   this.arrayPlayers = ko.observableArray([    ]);
-
-    self.addNewRow = function () {
-        self.arrayPlayers.push(new SaveDatas());
-    }
-
-}
-
-ko.applyBindings(new AddPlayersInTable());
-=======
-﻿(function () {
+(function () {
 
     // Variables
     var players = ko.observableArray();
@@ -55,4 +31,3 @@ ko.applyBindings(new AddPlayersInTable());
         });
     });
 })();
->>>>>>> 6fd8d59649e2c05ff86ab9227bbf974354f17902

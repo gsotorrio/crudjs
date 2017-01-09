@@ -3,43 +3,7 @@
 }
 
 <h2>Create Players</h2>
-<<<<<<< HEAD
-<form class="Contenedor">
-    <p>
-        <label class="sideForm" for="">Name:</label>
-        <input data-bind="value: name" type="text" name="name">
-    </p>
 
-    <p>
-        <label class="sideForm" for="">Surname:</label>
-        <input data-bind="value: surname" type="text" name="surname">
-    </p>
-
-    <p>
-        <label class="sideForm" for="">Position:</label>
-        <input data-bind="value: position" type="text" name="position">
-    </p>
-
-    <p>
-        <label class="sideForm" for="">Strong Leg:</label>
-        <input data-bind="value: strongLeg" type="text" name="strongLeg">
-    </p>
-
-    <p>
-        <label class="sideForm" for="">Age:</label>
-        <input data-bind="value: age" type="text" name="age">
-    </p>
-
-    <p>
-        <label class="sideForm" for="">Number:</label>
-        <input data-bind="value: numberPlayer" type="text" name="number">
-    </p>
-    <br />
-    <button data-bind="click: addNewRow" class="button">Save</button>
-    <input id="clean" type="button" value="Cancel" class="button" onclick="cleanFormulary();">
-    <input id="update" type="button" value="Update" onclick="changePlayerDatas();">
-</form>
-=======
 Name: <input id="name" type="text" name="name">
 <br />
 Surname: <input id="surname" type="text" name="surname">
@@ -56,31 +20,24 @@ Number: <input id="number" type="text" name="number">
 <input id="create" type="button" value="Save" class="button">
 <input id="clean" type="button" value="Cancel" class="button">
 <input id="update" type="button" value="Update">
->>>>>>> 6fd8d59649e2c05ff86ab9227bbf974354f17902
 
 
 <h2>List of Players</h2>
 
 <table id="tbPlayers" class="table">
     <thead>
-        <tr>
-            <th class="hideId">Player Id</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Position</th>
-            <th>Strong Leg</th>
-            <th>Age</th>
-            <th>Number</th>
-            <th></th>
-            <th></th>
-        </tr>
+    <tr>
+        <th class="hideId">Player Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Position</th>
+        <th>Strong Leg</th>
+        <th>Age</th>
+        <th>Number</th>
+        <th></th>
+        <th></th>
+    </tr>
     </thead>
-<<<<<<< HEAD
-
-    <tbody id="dynamicTr"></tbody>
-
-</table>
-=======
     <tbody data-bind="foreach: players">
         <tr>
             <td class="hideId" data-bind="tetx: playerId"></td>
@@ -95,7 +52,4 @@ Number: <input id="number" type="text" name="number">
         </tr>
     </tbody>
 </table>
-
-
->>>>>>> 6fd8d59649e2c05ff86ab9227bbf974354f17902
 
