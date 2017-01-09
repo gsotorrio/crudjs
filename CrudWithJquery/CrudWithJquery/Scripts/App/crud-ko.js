@@ -13,10 +13,18 @@
         });
     };
 
+    var update = function (player) {
+        $.get("http://localhost:13503/api/players/" + player.playerId, function (data) {
+            console.log(data);
+            
+        });
+    }
+
     // ViewModel
     var viewModel = {
         players: players,
-        remove: remove
+        remove: remove,
+        update: update
     };
 
     // On initialize
