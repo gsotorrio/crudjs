@@ -1,5 +1,5 @@
 (function () {
-
+    
     // Variables
     var players = ko.observableArray();
     var playerUpdate = {
@@ -10,6 +10,7 @@
         age: ko.observable(),
         playerNumber: ko.observable()
     };
+    var idPlayerUpdate;
 
     // Functions
     var remove = function(player, event){
@@ -31,6 +32,30 @@
             playerUpdate.strongLeg(data.strongLeg);
             playerUpdate.age(data.age);
             playerUpdate.playerNumber(data.playerNumber);
+
+            idPlayerUpdate = data.playerId;
+        });
+    }
+
+    var updatePlayerInTable = function () {
+        var updateDataPlayer = {
+            name: playerUpdate.name(),
+            surname: playerUpdate.surname(),
+            position: playerUpdate.position(),
+            strongLeg: playerUpdate.strongLeg(),
+            age: playerUpdate.age(),
+            playerNumber: playerUpdate.playerNumber()
+        }
+
+        $.ajax({
+            type: "PUT",
+            url: "http://localhost:13503/api/players/" + idPlayerUpdate,
+            contentType: "application/json",
+            data: JSON.stringify(updateDataPlayer)
+        }).done(function (data) {
+            console.log(data);
+
+           
         });
     }
 
@@ -39,7 +64,8 @@
         players: players,
         remove: remove,
         update: update,
-        playerUpdate: playerUpdate
+        playerUpdate: playerUpdate,
+        updatePlayerInTable: updatePlayerInTable
     };
 
     // On initialize
