@@ -3,6 +3,7 @@
     // Variables
     var players = ko.observableArray();
     var playerUpdate = {
+        playerId: ko.observable(),
         name: ko.observable(),
         surname: ko.observable(),
         position: ko.observable(),
@@ -10,9 +11,18 @@
         age: ko.observable(),
         playerNumber: ko.observable()
     };
-    var idPlayerUpdate;
+    //var idPlayerUpdate;
 
     // Functions
+    var clean = function () {
+        playerUpdate.name("");
+        playerUpdate.surname("");
+        playerUpdate.position("")
+        playerUpdate.strongLeg("");
+        playerUpdate.age("");
+        playerUpdate.playerNumber("");
+    }
+
     var remove = function(player, event){
         $.ajax({
             url: "http://localhost:13503/api/players/" + player.playerId,
@@ -26,6 +36,7 @@
         $.get("http://localhost:13503/api/players/" + player.playerId, function (data) {
             console.log(data);
             
+            playerUpdate.playerId(data.playerId),
             playerUpdate.name(data.name);
             playerUpdate.surname(data.surname);
             playerUpdate.position(data.position);
@@ -33,7 +44,7 @@
             playerUpdate.age(data.age);
             playerUpdate.playerNumber(data.playerNumber);
 
-            idPlayerUpdate = data.playerId;
+            //idPlayerUpdate = data.playerId;
         });
     }
 
@@ -49,13 +60,13 @@
 
         $.ajax({
             type: "PUT",
-            url: "http://localhost:13503/api/players/" + idPlayerUpdate,
+            url: "http://localhost:13503/api/players/" + playerUpdate.playerId(),
             contentType: "application/json",
             data: JSON.stringify(updateDataPlayer)
         }).done(function (data) {
             console.log(data);
 
-           
+            
         });
     }
 
@@ -65,7 +76,8 @@
         remove: remove,
         update: update,
         playerUpdate: playerUpdate,
-        updatePlayerInTable: updatePlayerInTable
+        updatePlayerInTable: updatePlayerInTable,
+        clean: clean
     };
 
     // On initialize
