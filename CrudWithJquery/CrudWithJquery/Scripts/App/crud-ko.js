@@ -3,7 +3,7 @@
     // Variables
     var players = ko.observableArray();
     var playerUpdate = {
-        playerId: ko.observable(),
+        //playerId: ko.observable(),
         name: ko.observable(),
         surname: ko.observable(),
         position: ko.observable(),
@@ -11,7 +11,7 @@
         age: ko.observable(),
         playerNumber: ko.observable()
     };
-    //var idPlayerUpdate;
+    var idPlayerUpdate;
 
     // Functions
     var clean = function () {
@@ -36,7 +36,7 @@
         $.get("http://localhost:13503/api/players/" + player.playerId, function (data) {
             console.log(data);
             
-            playerUpdate.playerId(data.playerId),
+            //playerUpdate.playerId(data.playerId),
             playerUpdate.name(data.name);
             playerUpdate.surname(data.surname);
             playerUpdate.position(data.position);
@@ -44,7 +44,7 @@
             playerUpdate.age(data.age);
             playerUpdate.playerNumber(data.playerNumber);
 
-            //idPlayerUpdate = data.playerId;
+            idPlayerUpdate = data.playerId;
         });
     }
 
@@ -60,14 +60,29 @@
 
         $.ajax({
             type: "PUT",
-            url: "http://localhost:13503/api/players/" + playerUpdate.playerId(),
+            url: "http://localhost:13503/api/players/" + idPlayerUpdate,
             contentType: "application/json",
             data: JSON.stringify(updateDataPlayer)
         }).done(function (data) {
             console.log(data);
 
+            clean();
             
         });
+    }
+
+    var putNewPlayerIntable = function () {
+        var newPlayer = {
+            name: playerUpdate.name(),
+            surname: playerUpdate.surname(),
+            position: playerUpdate.position(),
+            strongLeg: playerUpdate.strongLeg(),
+            age: playerUpdate.age(),
+            playerNumber: playerUpdate.playerNumber()
+        }
+        players.push(newPlayer);
+
+        clean();
     }
 
     // ViewModel
@@ -77,7 +92,8 @@
         update: update,
         playerUpdate: playerUpdate,
         updatePlayerInTable: updatePlayerInTable,
-        clean: clean
+        clean: clean,
+        putNewPlayerIntable: putNewPlayerIntable
     };
 
     // On initialize
