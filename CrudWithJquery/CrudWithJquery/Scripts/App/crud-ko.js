@@ -73,6 +73,7 @@
 
     var putNewPlayerIntable = function () {
         var newPlayer = {
+            playerId: playerUpdate.playerId,
             name: playerUpdate.name(),
             surname: playerUpdate.surname(),
             position: playerUpdate.position(),
@@ -80,9 +81,13 @@
             age: playerUpdate.age(),
             playerNumber: playerUpdate.playerNumber()
         }
-        players.push(newPlayer);
 
-        clean();
+        $.post("http://localhost:13503/api/players", newPlayer).done(function (player) {
+
+            players.push(newPlayer);
+
+            clean();
+        });       
     }
 
     // ViewModel
