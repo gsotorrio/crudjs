@@ -2,8 +2,9 @@
     
     // Variables
     var players = ko.observableArray();
+
     var playerUpdate = {
-        //playerId: ko.observable(),
+        playerId: ko.observable(),
         name: ko.observable(),
         surname: ko.observable(),
         position: ko.observable(),
@@ -11,7 +12,8 @@
         age: ko.observable(),
         playerNumber: ko.observable()
     };
-    var idPlayerUpdate;
+
+    var playerUpdateId;
 
     // Functions
     var clean = function () {
@@ -36,7 +38,7 @@
         $.get("http://localhost:13503/api/players/" + player.playerId, function (data) {
             console.log(data);
             
-            //playerUpdate.playerId(data.playerId),
+            playerUpdate.playerId(data.playerId);
             playerUpdate.name(data.name);
             playerUpdate.surname(data.surname);
             playerUpdate.position(data.position);
@@ -44,7 +46,13 @@
             playerUpdate.age(data.age);
             playerUpdate.playerNumber(data.playerNumber);
 
-            idPlayerUpdate = data.playerId;
+            playerUpdateId = data.playerId;
+        });
+    }
+
+    var removePlayerForUpdate = function (playerId) {
+        players.remove(function (players) {
+            return players.playerId == playerId;
         });
     }
 
@@ -60,14 +68,17 @@
 
         $.ajax({
             type: "PUT",
-            url: "http://localhost:13503/api/players/" + idPlayerUpdate,
+            url: "http://localhost:13503/api/players/" + playerUpdateId,
             contentType: "application/json",
             data: JSON.stringify(updateDataPlayer)
         }).done(function (data) {
             console.log(data);
 
-            clean();
-            
+            removePlayerForUpdate(playerUpdateId);
+
+            players.push(data);
+
+            clean(); 
         });
     }
 
@@ -82,9 +93,9 @@
             playerNumber: playerUpdate.playerNumber()
         }
 
-        $.post("http://localhost:13503/api/players", newPlayer).done(function (player) {
+        $.post("http://localhost:13503/api/players", newPlayer).done(function (data) {
 
-            players.push(newPlayer);
+            players.push(data);
 
             clean();
         });       
