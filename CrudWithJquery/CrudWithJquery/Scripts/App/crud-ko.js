@@ -3,7 +3,7 @@
     // Variables
     var players = ko.observableArray();
 
-    var playerUpdate = {
+    var player = {
         playerId: ko.observable(),
         name: ko.observable(),
         surname: ko.observable(),
@@ -13,16 +13,23 @@
         playerNumber: ko.observable()
     };
 
-    var playerUpdateId;
+    
 
-    // Functions
+    //Private Functions
+    function removePlayerForUpdate(playerId) {
+        players.remove(function (players) {
+            return players.playerId == playerId;
+        });
+    }
+
+    // Public Functions
     var clean = function () {
-        playerUpdate.name("");
-        playerUpdate.surname("");
-        playerUpdate.position("")
-        playerUpdate.strongLeg("");
-        playerUpdate.age("");
-        playerUpdate.playerNumber("");
+        player.name("");
+        player.surname("");
+        player.position("")
+        player.strongLeg("");
+        player.age("");
+        player.playerNumber("");
     }
 
     var remove = function(player, event){
@@ -34,63 +41,54 @@
         });
     };
 
-    var update = function (player) {
-        $.get("http://localhost:13503/api/players/" + player.playerId, function (data) {
+    var select = function (selectedPlayer) {
+        $.get("http://localhost:13503/api/players/" + selectedPlayer.playerId, function (data) {
             console.log(data);
             
-            playerUpdate.playerId(data.playerId);
-            playerUpdate.name(data.name);
-            playerUpdate.surname(data.surname);
-            playerUpdate.position(data.position);
-            playerUpdate.strongLeg(data.strongLeg);
-            playerUpdate.age(data.age);
-            playerUpdate.playerNumber(data.playerNumber);
-
-            playerUpdateId = data.playerId;
+            player.playerId(data.playerId);
+            player.name(data.name);
+            player.surname(data.surname);
+            player.position(data.position);
+            player.strongLeg(data.strongLeg);
+            player.age(data.age);
+            player.playerNumber(data.playerNumber);
         });
     }
 
-    var removePlayerForUpdate = function (playerId) {
-        players.remove(function (players) {
-            return players.playerId == playerId;
-        });
-    }
-
-    var updatePlayerInTable = function () {
+    var updatePlayer = function () {
         var updateDataPlayer = {
-            name: playerUpdate.name(),
-            surname: playerUpdate.surname(),
-            position: playerUpdate.position(),
-            strongLeg: playerUpdate.strongLeg(),
-            age: playerUpdate.age(),
-            playerNumber: playerUpdate.playerNumber()
+            name: player.name(),
+            surname: player.surname(),
+            position: player.position(),
+            strongLeg: player.strongLeg(),
+            age: player.age(),
+            playerNumber: player.playerNumber()
         }
 
         $.ajax({
             type: "PUT",
-            url: "http://localhost:13503/api/players/" + playerUpdateId,
+            url: "http://localhost:13503/api/players/" + player.playerId(),
             contentType: "application/json",
             data: JSON.stringify(updateDataPlayer)
         }).done(function (data) {
             console.log(data);
-
-            removePlayerForUpdate(playerUpdateId);
-
+            
+           removePlayerForUpdate(player.playerId());
+           
             players.push(data);
 
             clean(); 
         });
     }
 
-    var putNewPlayerIntable = function () {
+    var createPlayer = function () {
         var newPlayer = {
-            playerId: playerUpdate.playerId,
-            name: playerUpdate.name(),
-            surname: playerUpdate.surname(),
-            position: playerUpdate.position(),
-            strongLeg: playerUpdate.strongLeg(),
-            age: playerUpdate.age(),
-            playerNumber: playerUpdate.playerNumber()
+            name: player.name(),
+            surname: player.surname(),
+            position: player.position(),
+            strongLeg: player.strongLeg(),
+            age: player.age(),
+            playerNumber: player.playerNumber()
         }
 
         $.post("http://localhost:13503/api/players", newPlayer).done(function (data) {
@@ -105,11 +103,11 @@
     var viewModel = {
         players: players,
         remove: remove,
-        update: update,
-        playerUpdate: playerUpdate,
-        updatePlayerInTable: updatePlayerInTable,
+        select: select,
+        player: player,
+        updatePlayer: updatePlayer,
         clean: clean,
-        putNewPlayerIntable: putNewPlayerIntable
+        createPlayer: createPlayer
     };
 
     // On initialize

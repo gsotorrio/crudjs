@@ -7,37 +7,37 @@
 <form class="Contenedor">
     <p>
         <label class="sideForm" for="">Name:</label>
-        <input data-bind="textInput: playerUpdate.name" type="text" name="name">
+        <input data-bind="textInput: player.name" type="text" name="name">
     </p>
 
     <p>
         <label class="sideForm" for="">Surname:</label>
-        <input data-bind="textInput: playerUpdate.surname" type="text" name="surname">
+        <input data-bind="textInput: player.surname" type="text" name="surname">
     </p>
 
     <p>
         <label class="sideForm" for="">Position:</label>
-        <input data-bind="textInput: playerUpdate.position" type="text" name="position">
+        <input data-bind="textInput: player.position" type="text" name="position">
     </p>
 
     <p>
         <label class="sideForm" for="">Strong Leg:</label>
-        <input data-bind="textInput: playerUpdate.strongLeg" type="text" name="strongLeg">
+        <input data-bind="textInput: player.strongLeg" type="text" name="strongLeg">
     </p>
 
     <p>
         <label class="sideForm" for="">Age:</label>
-        <input data-bind="textInput: playerUpdate.age" type="text" name="age">
+        <input data-bind="textInput: player.age" type="text" name="age">
     </p>
 
     <p>
         <label class="sideForm" for="">Number:</label>
-        <input data-bind="textInput: playerUpdate.playerNumber" type="text" name="number">
+        <input data-bind="textInput: player.playerNumber" type="text" name="number">
     </p>
     <br />
-    <input data-bind= "click: putNewPlayerIntable" type="button" value="Save" class="button">
+    <input data-bind= "click: createPlayer" type="button" value="Save" class="button">
     <input data-bind= "click: clean" type="button" value="Cancel" class="button">
-    <input data-bind= "click: updatePlayerInTable" type="button" value="Update">
+    <input data-bind= "click: updatePlayer" type="button" value="Update">
 </form>
 
 <h2>List of Players</h2>
@@ -66,7 +66,7 @@
             <td data-bind="text: age"></td>
             <td data-bind="text: playerNumber"></td>
             <td data-bind="click: $root.remove"><a href="#">Delete</a></td>
-            <td data-bind="click: $root.update"><a href="#">Update</a></td>
+            <td data-bind="click: $root.select"><a href="#">Select</a></td>
         </tr>
     </tbody>
 </table>
