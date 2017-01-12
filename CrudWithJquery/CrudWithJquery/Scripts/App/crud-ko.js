@@ -19,6 +19,7 @@
     function removePlayerForUpdate(playerId) {
         players.remove(function (players) {
             return players.playerId == playerId;
+            var index = players.indexOf(playerId);
         });
     }
 
