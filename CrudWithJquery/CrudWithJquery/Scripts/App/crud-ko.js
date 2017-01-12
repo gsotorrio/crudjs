@@ -13,15 +13,6 @@
         playerNumber: ko.observable()
     };
 
-    
-
-    //Private Functions
-    function removePlayerForUpdate(playerId) {
-        players.remove(function (players) {
-            return players.playerId == playerId;
-        });
-    }
-
     // Public Functions
     var clean = function () {
         player.name("");
@@ -73,19 +64,15 @@
         }).done(function (data) {
             console.log(data);
 
-            var indexes = $.map(players(), function (obj, index) {
-                if (obj.playerId == data.playerId) {
-                    return index;
-                }
-            })
+            var indexPlayer;
 
-            var indexPlayer = indexes;
+            for (var i = 0; i < players().length; i++) {
+                if (players()[i].playerId == data.playerId) {
+                    indexPlayer = i;
+                }
+            }
 
             players.replace(players()[indexPlayer], data);
-            
-            //removePlayerForUpdate(player.playerId());
-           
-            //players.push(data);
 
             clean(); 
         });
