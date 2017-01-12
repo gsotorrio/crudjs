@@ -19,7 +19,6 @@
     function removePlayerForUpdate(playerId) {
         players.remove(function (players) {
             return players.playerId == playerId;
-            var index = players.indexOf(playerId);
         });
     }
 
@@ -73,10 +72,20 @@
             data: JSON.stringify(updateDataPlayer)
         }).done(function (data) {
             console.log(data);
+
+            var indexes = $.map(players(), function (obj, index) {
+                if (obj.playerId == data.playerId) {
+                    return index;
+                }
+            })
+
+            var indexPlayer = indexes;
+
+            players.replace(players()[indexPlayer], data);
             
-           removePlayerForUpdate(player.playerId());
+            //removePlayerForUpdate(player.playerId());
            
-            players.push(data);
+            //players.push(data);
 
             clean(); 
         });
@@ -91,7 +100,6 @@
             age: player.age(),
             playerNumber: player.playerNumber()
         }
-
         $.post("http://localhost:13503/api/players", newPlayer).done(function (data) {
 
             players.push(data);
